@@ -5,7 +5,7 @@ export default class Trie {
 
     constructor() {
         this._root = new TrieNode();
-        this.lastIndex = 1;
+        this._lastIndex = 1;
     }
 
     get root() {
@@ -19,7 +19,7 @@ export default class Trie {
      * @param {Object}[data]
      */
     insert(word, data) {
-        this._insertWord(word, data, this._root, 0);
+        return this._insertWord(word, data, this._root, 0);
     }
 
     /**
@@ -32,18 +32,16 @@ export default class Trie {
      */
     _insertWord(word, data, currentNode, wordIndex) {
         if (wordIndex === word.length) {
-            currentNode.isEndOfWord = true;
-            currentNode.data = !data ? this._getNextIndex() : data;
-            return;
+            currentNode.word = word;
+            currentNode.update(data || this._getNextIndex());
+            return true;
         }
 
         let c = word.charAt(wordIndex);
-        if (!currentNode.children[c]) {
-            currentNode.children[c] = new TrieNode();
-            currentNode.children[c].parent = currentNode;
-            currentNode.children[c].parentKey = c;
+        if (!currentNode.hasChild(c)) {
+            currentNode.addChild(c, new TrieNode(currentNode, c))
         }
-        this._insertWord(word, data, currentNode.children[c], wordIndex + 1);
+        return this._insertWord(word, data, currentNode.children[c], wordIndex + 1);
     }
 
     /**
@@ -69,17 +67,11 @@ export default class Trie {
      */
     _searchNode(word, currentNode, wordIndex) {
         if (wordIndex === word.length) {
-            if (currentNode.isEndOfWord)
-                return currentNode;
-            else
-                return null;
+            return currentNode.isEndOfWord ? currentNode : null;
         }
 
         let c = word.charAt(wordIndex);
-        if (currentNode.children[c])
-            return this._searchNode(word, currentNode.children[c], wordIndex + 1);
-        else
-            return null;
+        return currentNode.hasChild(c) ? this._searchNode(word, currentNode.children[c], wordIndex + 1) : null;
     }
 
     /**
@@ -93,9 +85,8 @@ export default class Trie {
         if (!node)
             return false;
 
-        if(node.hasChildren()){
-            node.isEndOfWord = false;
-            node.data = null;
+        if (node.hasChildren()) {
+            node.update(null);
             return true;
         }
 
@@ -110,15 +101,37 @@ export default class Trie {
 
         // if(currentNode.parentKey === word.charAt(wordIndex))
 
-        parent.deleteChild(currentNode.parentKey);
-
-        if (parent.hasChildren())
+        parent.node.deleteChild(parent.key);
+        if (parent.node.hasChildren())
             return;
-        this._deleteWord(parent);
+        this._deleteWord(parent.node);
     }
 
+    update(word, data) {
+        const node = this._searchNode(word, this._root, 0);
+        if (!node)
+            return false;
+
+        node.update(data);
+        return true;
+    }
+
+    getDataNode(word) {
+        return this._searchNode(word, this._root, 0);
+    }
+
+    getPath(word) {
+        const path = [];
+        path.push(this._root);
+
+        for (let i = 1; i <= word.length; i++) {
+            path.push(this._searchNode(word.substring(0, i), this._root, 0));
+        }
+
+        return path;
+    }
 
     _getNextIndex() {
-        return this.lastIndex++;
+        return this._lastIndex++;
     }
 }
