@@ -1,0 +1,31 @@
+{
+  "name": "grovejs",
+  "version": "1.0.0",
+  "description": "Lightweight library for tree structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "run": "webpack-dev-server --color --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mladoniczky/grovejs.git"
+  },
+  "keywords": [
+    "tree",
+    "trie"
+  ],
+  "author": "Milan Mladoniczky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mladoniczky/grovejs/issues"
+  },
+  "homepage": "https://github.com/mladoniczky/grovejs#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^2.0.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
