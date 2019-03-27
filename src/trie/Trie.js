@@ -1,13 +1,22 @@
 import TrieNode from "./TrieNode.js";
 
+/**
+ * Trie data structure.
+ */
 export default class Trie {
 
-
+    /**
+     * @constructor
+     */
     constructor() {
         this._root = new TrieNode(null, true);
         this._lastIndex = 1;
     }
 
+    /**
+     * Get root node of the Trie
+     * @returns {TrieNode}
+     */
     get root() {
         return this._root;
     }
@@ -15,7 +24,7 @@ export default class Trie {
     /**
      * Insert word to the Trie and map data on the word.
      * If data is not provided it is automatically generated as an increasing number.
-     * @param {String}word
+     * @param {string}word
      * @param {Object}[data]
      */
     insert(word, data) {
@@ -24,7 +33,7 @@ export default class Trie {
 
     /**
      *
-     * @param {String}word
+     * @param {string}word
      * @param {Object}data
      * @param {TrieNode}currentNode
      * @param {number}wordIndex
@@ -48,7 +57,7 @@ export default class Trie {
      * Searching Trie for data indexed by the provided word.
      * If the word is in the Trie a data object is returned.
      * If the word is not found in the Trie null is returned.
-     * @param {String}word
+     * @param {string}word
      * @returns {Object | null}
      */
     search(word) {
@@ -59,7 +68,7 @@ export default class Trie {
     /**
      * Get index node for the word.
      * If the word is not in the Trie null is returned.
-     * @param {String}word
+     * @param {string}word
      * @param {TrieNode}currentNode
      * @param {number}wordIndex
      * @returns {TrieNode | null}
@@ -77,7 +86,7 @@ export default class Trie {
     /**
      * Delete word from the Trie.
      * If the word is not in the Trie false is returned otherwise true.
-     * @param {String}word
+     * @param {string}word
      * @returns {boolean}
      */
     delete(word) {
@@ -94,6 +103,11 @@ export default class Trie {
         return true;
     }
 
+    /**
+     *
+     * @param {TrieNode} currentNode
+     * @private
+     */
     _deleteWord(currentNode) {
         if (currentNode === this._root)
             return;
@@ -107,6 +121,12 @@ export default class Trie {
         this._deleteWord(parent.node);
     }
 
+    /**
+     *
+     * @param {string} word
+     * @param {*} data
+     * @returns {boolean}
+     */
     update(word, data) {
         const node = this._searchNode(word, this._root, 0);
         if (!node)
@@ -116,10 +136,20 @@ export default class Trie {
         return true;
     }
 
+    /**
+     *
+     * @param {string} word
+     * @returns {TrieNode}
+     */
     getDataNode(word) {
         return this._searchNode(word, this._root, 0);
     }
 
+    /**
+     *
+     * @param {string} word
+     * @returns {Array<TrieNode>}
+     */
     getPath(word) {
         const path = [];
         path.push(this._root);
@@ -131,6 +161,11 @@ export default class Trie {
         return path;
     }
 
+    /**
+     *
+     * @returns {number}
+     * @private
+     */
     _getNextIndex() {
         return this._lastIndex++;
     }

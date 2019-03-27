@@ -7,7 +7,7 @@
     "test": "karma start",
     "doc": "npm run doc:lint && npm run doc:md & npm run doc:html",
     "doc:lint": "documentation lint src/index.js",
-    "doc:md": "documentation build src/index.js -f md -o dist/docs/markdown",
+    "doc:md": "documentation build src/index.js -f md -o dist/docs/markdown/index.md",
     "doc:html": "documentation build src/index.js -f html -o dist/docs/html",
     "build": "webpack --progress --color",
     "run": "webpack-dev-server --color --open"

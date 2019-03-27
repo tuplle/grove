@@ -10,13 +10,13 @@ export default class TrieNode {
     /**
      * Constructor of a new node of Trie data structure
      * @param {Object} parent Parent config object
-     * @param {String} parent.key Index for this node in its parent node
+     * @param {string} parent.key Index for this node in its parent node
      * @param {TrieNode} parent.node Reference to the parent node
      * @param {boolean} [isRoot] Boolean flag of root node. If the node is root it is not check for parent
      */
     constructor(parent = {key: "", node: null}, isRoot = false) {
         if (!isRoot && (!parent.key || !(typeof parent.key === 'string')))
-            throw new Error("Parent key cannot be null, empty or not type of String!");
+            throw new Error("Parent key cannot be null, empty or not type of string!");
         if (!isRoot && (!parent.node || !(parent.node instanceof TrieNode)))
             throw new Error("Parent node cannot be null, empty or not class of TrieNode");
 
@@ -29,7 +29,7 @@ export default class TrieNode {
 
     /**
      * Get parent object consisting of the child index and parent node.
-     * @returns {{key: String, node: TrieNode}}
+     * @returns {{key: string, node: TrieNode}}
      */
     get parent() {
         return this._parent;
@@ -78,7 +78,7 @@ export default class TrieNode {
      * Delete child indexed by the provided character.
      * If the child does not exists nothing happens.
      * If the child does exists, the child node object is deleted.
-     * @param {String} char
+     * @param {string} char
      */
     deleteChild(char) {
         if (!this._children[char])
@@ -92,7 +92,7 @@ export default class TrieNode {
     /**
      * Add a child to the node.
      * If a child already exists on the index it is overridden by the new child.
-     * @param {String} char
+     * @param {string} char
      * @param {TrieNode} node
      * @returns {TrieNode|null} If a child is overridden the old child node is return, otherwise false.
      */
@@ -108,7 +108,7 @@ export default class TrieNode {
 
     /**
      * Check is the node has a child indexed by the provided character.
-     * @param {String} char
+     * @param {string} char
      * @returns {boolean} True if a child exists, otherwise false.
      */
     hasChild(char) {
