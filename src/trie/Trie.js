@@ -4,7 +4,7 @@ export default class Trie {
 
 
     constructor() {
-        this._root = new TrieNode();
+        this._root = new TrieNode(null, true);
         this._lastIndex = 1;
     }
 
@@ -39,7 +39,7 @@ export default class Trie {
 
         let c = word.charAt(wordIndex);
         if (!currentNode.hasChild(c)) {
-            currentNode.addChild(c, new TrieNode(currentNode, c))
+            currentNode.addChild(c, new TrieNode({key: c, node: currentNode}))
         }
         return this._insertWord(word, data, currentNode.children[c], wordIndex + 1);
     }

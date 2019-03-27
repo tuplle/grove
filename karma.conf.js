@@ -29,10 +29,19 @@ module.exports = function (config) {
             'dist/*.js': ['coverage'],
             'test/**/*.[sS]pec.js': ['webpack'],
         },
+
+        plugins: [
+            "karma-chrome-launcher",
+            "karma-coverage",
+            "karma-jasmine",
+            "karma-jasmine-html-reporter",
+            "karma-webpack"
+        ],
+
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage','kjhtml'],
+        reporters: ['progress', 'coverage', 'kjhtml'],
 
 
         // web server port
@@ -45,11 +54,11 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DEBUG,
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+        autoWatch: false,
 
 
         // start these browsers
@@ -74,11 +83,13 @@ module.exports = function (config) {
         // how many browser should be started simultaneous
         concurrency: Infinity,
         coverageReporter: {
+            includeAllSources: true,
             dir: './coverage',
             reporters: [
+                {type: "html", subdir: "html"},
                 {type: 'lcov', subdir: '.'},
                 {type: 'text-summary'}
             ]
         }
-    })
-}
+    });
+};
