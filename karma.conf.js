@@ -7,15 +7,15 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine'], //TODO karma-benchmark
 
 
         // list of files / patterns to load in the browser
         files: [
             // 'test/**/*.js',
-
             'test/**/*.[sS]pec.js',
-            // 'dist/*.js',
+            //'src/**/*.js'
+            'dist/*.js'
         ],
 
 
@@ -26,6 +26,7 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+            //'src/**/*.js': ['coverage'],
             'dist/*.js': ['coverage'],
             'test/**/*.[sS]pec.js': ['webpack'],
         },
@@ -35,13 +36,14 @@ module.exports = function (config) {
             "karma-coverage",
             "karma-jasmine",
             "karma-jasmine-html-reporter",
+            "karma-mocha-reporter",
             "karma-webpack"
         ],
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage', 'kjhtml'],
+        reporters: ['progress', 'coverage', 'kjhtml', 'mocha'],
 
 
         // web server port
@@ -54,7 +56,7 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_INFO,
 
 
         // enable / disable watching file and executing tests whenever any file changes
@@ -68,7 +70,7 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+        singleRun: true,
 
         webpack: {
             // karma watches the test entry points
@@ -76,7 +78,7 @@ module.exports = function (config) {
             // webpack watches dependencies
 
             // webpack configuration
-            mode: 'production'
+            mode: 'development'
         },
 
         // Concurrency level
@@ -84,7 +86,7 @@ module.exports = function (config) {
         concurrency: Infinity,
         coverageReporter: {
             includeAllSources: true,
-            dir: './coverage',
+            dir: './dist/reports/coverage',
             reporters: [
                 {type: "html", subdir: "html"},
                 {type: 'lcov', subdir: '.'},

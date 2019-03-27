@@ -15,7 +15,7 @@ export default class TrieNode {
      * @param {boolean} [isRoot] Boolean flag of root node. If the node is root it is not check for parent
      */
     constructor(parent = {key: "", node: null}, isRoot = false) {
-        if (!isRoot && (!parent.key || !(parent.key instanceof String)))
+        if (!isRoot && (!parent.key || !(typeof parent.key === 'string')))
             throw new Error("Parent key cannot be null, empty or not type of String!");
         if (!isRoot && (!parent.node || !(parent.node instanceof TrieNode)))
             throw new Error("Parent node cannot be null, empty or not class of TrieNode");
@@ -97,7 +97,7 @@ export default class TrieNode {
      * @returns {TrieNode|null} If a child is overridden the old child node is return, otherwise false.
      */
     addChild(char, node) {
-        if(!char || !node)
+        if (!char || !node)
             return null;
 
         const old = this._children[char];

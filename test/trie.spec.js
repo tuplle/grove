@@ -18,7 +18,10 @@ describe("Trie spec", ()=>{
     });
 
     it("inserting word CACAO",()=>{
-        trie.insert("CACAO");
-        expect(trie.search("CACAO")).toBe(1);
+        const word = "CACAO";
+
+        trie.insert(word);
+        console.log(trie.search(word));
+        expect(trie.search(word)).toBe(1);
     })
 });
