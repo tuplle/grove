@@ -4,7 +4,8 @@
   "description": "Lightweight library for tree structure",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run unit-test",
+    "unit-test": "karma start",
     "build": "webpack --progress --color",
     "run": "webpack-dev-server --color --open"
   },
@@ -24,6 +25,13 @@
   "homepage": "https://github.com/mladoniczky/grovejs#readme",
   "devDependencies": {
     "clean-webpack-plugin": "^2.0.0",
+    "jasmine-core": "^3.3.0",
+    "karma": "^4.0.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-jasmine": "^2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.0",
+    "karma-webpack": "^3.0.5",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
