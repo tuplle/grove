@@ -15,7 +15,7 @@ export default class TrieNode {
      * @param {boolean} [isRoot] Boolean flag of root node. If the node is root it is not check for parent
      */
     constructor(parent = {key: "", node: null}, isRoot = false) {
-        if (!isRoot && (!parent.key || !(typeof parent.key === 'string')))
+        if (!isRoot && (!parent.key || typeof parent.key !== 'string'))
             throw new Error("Parent key cannot be null, empty or not type of string!");
         if (!isRoot && (!parent.node || !(parent.node instanceof TrieNode)))
             throw new Error("Parent node cannot be null, empty or not class of TrieNode");
