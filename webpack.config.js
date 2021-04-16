@@ -1,19 +1,30 @@
-const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const path = require("path");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
-    mode: 'production',
-    entry: './src/index.js',
-    devtool: 'inline-source-map',
+    mode: "production",
+    entry: path.resolve(__dirname, "src", "index.ts"),
+    devtool: "inline-source-map",
     devServer: {
-        contentBase: './dist'
+        contentBase: path.resolve(__dirname, "dist")
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: "ts-loader",
+                exclude: /node_modules/
+            }
+        ]
     },
     plugins: [
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
     ],
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"]
+    },
     output: {
-        filename: 'grove.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: "grove.js",
+        path: path.resolve(__dirname, "dist")
     }
 };

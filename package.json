@@ -1,45 +1,47 @@
 {
-  "name": "grovejs",
+  "name": "grove",
   "version": "1.0.0",
-  "description": "Lightweight library for tree structure",
-  "main": "index.js",
+  "description": "Lightweight library for tree structures",
+  "main": "grove.js",
   "scripts": {
     "test": "karma start",
-    "doc": "npm run doc:lint && npm run doc:md & npm run doc:html",
-    "doc:lint": "documentation lint src/index.js",
-    "doc:md": "documentation build src/index.js -f md -o dist/docs/markdown/index.md",
-    "doc:html": "documentation build src/index.js -f html -o dist/docs/html",
-    "build": "webpack --progress --color",
-    "run": "webpack-dev-server --color --open"
+    "doc": "typedoc",
+    "lint": "tslint -p tsconfig.json",
+    "build": "webpack --progress --color"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mladoniczky/grovejs.git"
+    "url": "git+https://github.com/mladoniczky/grove.git"
   },
   "keywords": [
     "tree",
-    "trie"
+    "trie",
+    "tree-structure",
+    "search-tree",
+    "binary-tree"
   ],
   "author": "Milan Mladoniczky",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mladoniczky/grovejs/issues"
+    "url": "https://github.com/mladoniczky/grove/issues"
   },
-  "homepage": "https://github.com/mladoniczky/grovejs#readme",
+  "homepage": "https://github.com/mladoniczky/grove#readme",
   "devDependencies": {
-    "clean-webpack-plugin": "^2.0.0",
-    "documentation": "^9.3.1",
-    "jasmine-core": "^3.3.0",
-    "karma": "^4.0.1",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.2",
-    "karma-jasmine": "^2.0.1",
-    "karma-jasmine-html-reporter": "^1.4.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "jasmine-core": "^3.7.1",
+    "karma": "^6.3.2",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.3",
+    "karma-jasmine": "^4.0.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-webpack": "^3.0.5",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1"
-  },
-  "dependencies": {}
+    "karma-webpack": "^5.0.0",
+    "ts-loader": "^8.1.0",
+    "tslint": "^6.1.3",
+    "typedoc": "^0.5.10",
+    "typedoc-webpack-plugin": "^1.1.4",
+    "typescript": "^4.2.4",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  }
 }

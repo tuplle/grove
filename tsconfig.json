@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "noImplicitAny": true,
+    "declaration": true,
+    "module": "ESNext",
+    "target": "ES5",
+    "sourceMap": true,
+    "moduleResolution": "Node"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "typedocOptions": {
+    "entryPoints": [
+      "src/index.ts"
+    ],
+    "name": "grove",
+    "mode": "modules",
+    "out": "dist/docs"
+  }
+}
