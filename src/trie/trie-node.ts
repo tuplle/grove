@@ -9,9 +9,9 @@
 export default class TrieNode<T> {
 
     private _children: { [k: string]: TrieNode<T> } = {};
-    private _data: T;
+    private _data: T = undefined;
     private _isEnd: boolean = false;
-    private _word: string;
+    private _word: string = undefined;
 
     /**
      * Constructor of a new node of Trie data structure

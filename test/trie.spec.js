@@ -1,5 +1,4 @@
-import {Trie} from "../src";
-import TrieNode from "../src/trie/trie-node";
+const {Trie, TrieNode} = require('../dist/grove');
 
 describe("Trie spec", () => {
 
@@ -9,16 +8,17 @@ describe("Trie spec", () => {
         trie = new Trie();
     });
 
-    it("creating new instance of Trie", () => {
+    test("creating new instance of Trie", () => {
         expect(trie).toBeDefined();
-        expect(trie).toEqual(jasmine.any(Trie));
-        expect(trie.root).toEqual(jasmine.any(TrieNode));
+        expect(trie).toBeInstanceOf(Trie);
+        expect(trie.root).toBeDefined();
+        expect(trie.root.parent).toBeNull();
     });
 
-    it("inserting word CACAO", () => {
+    test("inserting word CACAO", () => {
         const word = "CACAO";
         trie.insert(word, 1);
         console.log(trie.search(word));
         expect(trie.search(word)).toBe(1);
-    })
+    });
 });

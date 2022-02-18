@@ -1,1 +1,1 @@
-export * from "./trie/index";
+export * from "./trie";

@@ -1,1 +1,2 @@
-export {default as Trie} from "./Trie";
+export * from './trie';
+export * from './trie-node'
