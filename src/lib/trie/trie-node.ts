@@ -9,9 +9,9 @@
 export default class TrieNode<T> {
 
     private _children: { [k: string]: TrieNode<T> } = {};
-    private _data: T = undefined;
-    private _isEnd: boolean = false;
-    private _word: string = undefined;
+    private _data: T | undefined = undefined;
+    private _isLeaf = false;
+    private _word: string | undefined = undefined;
 
     /**
      * Constructor of a new node of Trie data structure
@@ -19,7 +19,7 @@ export default class TrieNode<T> {
      * @param _parent Reference to the parent node
      * @param {boolean} [isRoot] Boolean flag of root node. If the node is root it is not check for parent
      */
-    constructor(private _key: string, private _parent: TrieNode<T>, isRoot: boolean = false) {
+    constructor(private _key: string, private _parent: TrieNode<T> | null, isRoot = false) {
         if (!isRoot && (!_key || typeof _key !== 'string'))
             throw new Error("Parent key cannot be null, empty or not type of string!");
         if (!isRoot && (!_parent || !(_parent instanceof TrieNode)))
@@ -30,19 +30,23 @@ export default class TrieNode<T> {
      * Get parent object consisting of the child index and parent node.
      * @returns {TrieNode}
      */
-    get parent(): TrieNode<T> {
+    get parent(): TrieNode<T> | null {
         return this._parent;
     }
 
     /**
      * Get map of all node's children.
-     * @returns {{}|{TrieNode}} Child index is one character of a inserted word and value is child's node object.
+     * @returns {{}|{TrieNode}} Child index is one character of an inserted word and value is child's node object.
      */
     get children(): { [k: string]: TrieNode<T> } {
         return this._children;
     }
 
-    get data(): T {
+    /**
+     * Get data for indexed word.
+     * @returns {undefined | Object}
+     */
+    get data(): T | undefined {
         return this._data;
     }
 
@@ -51,23 +55,23 @@ export default class TrieNode<T> {
      * @param {*} value If data is set to some value the node is automatically set as the end of a word.
      * If data has false value indexed word is removed from the node.
      */
-    set data(value: T) {
-        this._isEnd = !!value;
+    set data(value: T | undefined) {
+        this._isLeaf = !!value;
         this._data = value;
-        if (!this._isEnd)
+        if (!this._isLeaf)
             this._word = undefined;
     }
 
-    get word(): string {
+    get word(): string | undefined {
         return this._word;
     }
 
-    set word(value: string) {
+    set word(value: string | undefined) {
         this._word = value;
     }
 
-    get isEnd(): boolean {
-        return this._isEnd;
+    get isLeaf(): boolean {
+        return this._isLeaf;
     }
 
     get key(): string {
@@ -79,8 +83,8 @@ export default class TrieNode<T> {
      * If this function is finished all reference to this node from the Trie root is lost.
      */
     unlink() {
-        this._parent = undefined;
-        this._key = undefined;
+        this._parent = null;
+        this._key = "";
     }
 
     /**
@@ -95,7 +99,7 @@ export default class TrieNode<T> {
 
     /**
      * Check if the node has any child nodes attached to it.
-     * @returns {boolean} True if has any children, otherwise false.
+     * @returns {boolean} True if it has any children, otherwise false.
      */
     hasChildren() {
         return Object.keys(this._children).length > 0;
@@ -103,8 +107,8 @@ export default class TrieNode<T> {
 
     /**
      * Delete child indexed by the provided character.
-     * If the child does not exists nothing happens.
-     * If the child does exists, the child node object is deleted.
+     * If the child does not exist, nothing happens.
+     * If the child does exist, the child node object is deleted.
      * @param key Child index
      */
     deleteChild(key: string) {

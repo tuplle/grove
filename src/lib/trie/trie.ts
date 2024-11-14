@@ -1,11 +1,11 @@
-import TrieNode from "./trie-node";
+import TrieNode from './trie-node';
 
 /**
  * Trie data structure.
  */
 export default class Trie<T> {
 
-    private _root: TrieNode<T> = new TrieNode("", null, true);
+    private _root: TrieNode<T> = new TrieNode('', null, true);
 
     /**
      * Get root node of the Trie
@@ -53,7 +53,7 @@ export default class Trie<T> {
      * @param {string}word
      * @returns {Object | null}
      */
-    search(word: string) {
+    search(word: string): undefined | T {
         const node = this._searchNode(word, this._root, 0);
         return !node ? undefined : node.data;
     }
@@ -67,9 +67,9 @@ export default class Trie<T> {
      * @returns {TrieNode | null}
      * @private
      */
-    private _searchNode(word: string, currentNode: TrieNode<T>, wordIndex: number): TrieNode<T> {
+    private _searchNode(word: string, currentNode: TrieNode<T>, wordIndex: number): TrieNode<T> | undefined {
         if (wordIndex === word.length) {
-            return currentNode.isEnd ? currentNode : undefined;
+            return currentNode.isLeaf ? currentNode : undefined;
         }
 
         const c = word.charAt(wordIndex);
@@ -82,7 +82,7 @@ export default class Trie<T> {
      * @param {string}word
      * @returns {boolean}
      */
-    delete(word: string) {
+    delete(word: string): boolean {
         const node = this._searchNode(word, this._root, 0);
         if (!node)
             return false;
@@ -101,27 +101,29 @@ export default class Trie<T> {
      * @param {TrieNode} currentNode
      * @private
      */
-    private _deleteWord(currentNode: TrieNode<T>) {
+    private _deleteWord(currentNode: TrieNode<T>): void {
         if (currentNode === this._root)
             return;
         const parent = currentNode.parent;
 
-        parent.deleteChild(currentNode.key);
-        if (parent.hasChildren())
-            return;
-        this._deleteWord(parent);
+        if (parent) {
+            parent.deleteChild(currentNode.key);
+            if (parent.hasChildren())
+                return;
+            this._deleteWord(parent);
+        }
     }
 
     /**
      *
      * @param {string} word
-     * @param {*} data
-     * @returns {*}
+     * @param {Object} data
+     * @returns {Object | undefined}
      */
-    update(word: string, data: T) {
+    update(word: string, data: T): T | undefined {
         const node = this._searchNode(word, this._root, 0);
         if (!node)
-            return false;
+            return undefined;
 
         const old = node.data;
         node.data = data;
@@ -133,7 +135,7 @@ export default class Trie<T> {
      * @param {string} word
      * @returns {TrieNode}
      */
-    getDataNode(word: string) {
+    getDataNode(word: string): TrieNode<T> | undefined {
         return this._searchNode(word, this._root, 0);
     }
 
@@ -147,7 +149,10 @@ export default class Trie<T> {
         path.push(this._root);
 
         for (let i = 1; i <= word.length; i++) {
-            path.push(this._searchNode(word.substring(0, i), this._root, 0));
+            const node = this._searchNode(word.substring(0, i), this._root, 0);
+            if (node) {
+                path.push();
+            }
         }
         return path;
     }

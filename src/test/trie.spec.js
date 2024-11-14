@@ -1,4 +1,4 @@
-const {Trie, TrieNode} = require('../dist/grove');
+const {Trie} = require('../../dist/grove.js');
 
 describe("Trie spec", () => {
 
