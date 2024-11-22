@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="C:\Users\navi1\OneDrive\Počítač\grove\test\trie.spec.js">
-    <testCase name="Trie spec creating new instance of Trie" duration="4"/>
-    <testCase name="Trie spec inserting word CACAO" duration="43"/>
-    <testCase name="CardinalTrie spec should insert and search words" duration="2"/>
-    <testCase name="CardinalTrie spec should delete a word from the trie" duration="2"/>
-    <testCase name="CardinalTrie spec should update the data of a word" duration="1"/>
-    <testCase name="CardinalTrie spec should retrieve the path of a word" duration="1"/>
-    <testCase name="CardinalTrie spec should handle insertion and search with overlapping prefixes" duration="1"/>
-    <testCase name="CardinalTrie spec should throw an error for invalid characters in word" duration="57"/>
-    <testCase name="CardinalTrie spec should return null when searching in an empty trie" duration="1"/>
-    <testCase name="CardinalTrie spec inserting very long word to test recursion depth" duration="14"/>
-    <testCase name="CardinalTrie without alphabet should insert and search numeric words" duration="0"/>
-    <testCase name="CardinalTrie without alphabet should throw an error for invalid characters (non-digit)" duration="1"/>
-    <testCase name="CardinalTrie without alphabet should handle insertion and search with overlapping numeric prefixes" duration="1"/>
-    <testCase name="CardinalTrie without alphabet should return null when searching for non-existent numeric word" duration="1"/>
-    <testCase name="CardinalTrieNode spec should throw an error if parent key is null and not root" duration="1"/>
-    <testCase name="CardinalTrieNode spec should throw an error if parent node is null and not root" duration="1"/>
-    <testCase name="CardinalTrieNode spec should create a root node without a parent" duration="1"/>
-    <testCase name="CardinalTrieNode methods should check if node has a child at a specific index" duration="1"/>
-    <testCase name="CardinalTrieNode methods should add and delete child nodes correctly" duration="0"/>
-    <testCase name="CardinalTrieNode methods should verify if node has any children" duration="0"/>
-    <testCase name="CardinalTrieNode methods should unlink a child node from its parent" duration="1"/>
-    <testCase name="CardinalTrieNode methods should update node data correctly" duration="1"/>
-    <testCase name="CardinalTrie additional tests should handle insertion with provided data" duration="1"/>
-    <testCase name="CardinalTrie additional tests should update existing word with new data" duration="0"/>
-    <testCase name="CardinalTrie additional tests should delete a word and ensure it&apos;s removed" duration="0"/>
-    <testCase name="CardinalTrie additional tests should retrieve the correct path for a given word" duration="0"/>
-    <testCase name="CardinalTrie additional tests should return null when searching for a non-existent word" duration="0"/>
-    <testCase name="CardinalTrie additional tests should handle insertion and search with overlapping prefixes without alphabet" duration="0"/>
-    <testCase name="CardinalTrie additional tests should throw an error when inserting a word with invalid character without alphabet" duration="0"/>
+  <file path="C:\Users\timot\Desktop\year5\ESS\0_grove_odovzdavka_najnovsia_verzia\grove\test\trie.spec.ts">
+    <testCase name="Trie and TrieNode Tests TrieNode Tests should add and delete child nodes" duration="4"/>
+    <testCase name="Trie and TrieNode Tests TrieNode Tests should update a node&apos;s data and mark it as end of word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests TrieNode Tests should unlink a node" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should insert and search for a word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should return null for a non-existent word" duration="0"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should delete a word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should update data for a word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should handle words with common prefixes" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should handle deletion of word with shared prefixes" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should retrieve path to a word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should get data node for a word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should handle case-insensitive words" duration="0"/>
   </file>
 </testExecutions>
